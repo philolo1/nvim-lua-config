@@ -6,11 +6,9 @@ lsp.setup_servers({
     'tsserver',
     'eslint',
     'lua_ls',
-    'rust_analyzer'
+    'rust_analyzer',
+    'gopls',
 })
-
-
-
 
 
 
@@ -36,7 +34,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 -- -- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 -- format on save
 lsp.format_on_save({
@@ -53,10 +50,12 @@ lsp.format_on_save({
     }
 })
 
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()
 
 local cmp = require('cmp')
 local cmp_select_opts = { behavior = cmp.SelectBehavior.Insert }
+
 
 cmp.setup({
     preselect = 'none',
@@ -71,6 +70,13 @@ cmp.setup({
     mapping = {
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-k>'] = cmp.mapping(function()
+            if cmp.visible() then
+                cmp.select_next_item(cmp_select_opts)
+            else
+                cmp.complete()
+            end
+        end),
         ['<C-n>'] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_next_item(cmp_select_opts)
