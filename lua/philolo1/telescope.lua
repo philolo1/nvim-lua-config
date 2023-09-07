@@ -23,12 +23,12 @@ end
 require('telescope').load_extension('fzf')
 
 vim.keymap.set('n', '<C-k>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>k', builtin.find_files, {})
 
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+-- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
 vim.keymap.set('n', '<C-l>', FilterLua, {})
+vim.keymap.set('n', '<leader>l', FilterLua, {})
 
-vim.keymap.set('n', '<C-s>', function()
-    --	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-    builtin.live_grep();
-end)
+vim.keymap.set('n', '<C-s>', builtin.live_grep)
+vim.keymap.set('n', '<leader>s', builtin.live_grep)

@@ -111,8 +111,8 @@ local plugins = {
     'simrat39/rust-tools.nvim',
     'nvim-lua/plenary.nvim',
     'mfussenegger/nvim-dap'
-
-
 }
+
+local opts = {}
 
 require("lazy").setup(plugins, opts)

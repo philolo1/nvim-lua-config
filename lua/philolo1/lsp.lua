@@ -1,7 +1,6 @@
 local lsp = require('lsp-zero').preset("recommended")
 
 
-print("LSP");
 lsp.setup_servers({
     'tsserver',
     'eslint',
