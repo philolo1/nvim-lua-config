@@ -1,1 +1,7 @@
-vim.keymap.set("n", "<C-g>", vim.cmd.Git);
+function OpenGit()
+    vim.cmd.Git();
+    -- close the half way open window
+    vim.cmd(':exe "wincmd j" | q');
+end
+
+vim.keymap.set("n", "<C-g>", OpenGit);

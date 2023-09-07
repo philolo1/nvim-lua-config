@@ -93,22 +93,21 @@ local plugins = {
     "tpope/vim-dadbod",
     "kristijanhusak/vim-dadbod-ui",
     "kristijanhusak/vim-dadbod-completion",
-    -- lazy.nvim
-    -- {
-    --     "folke/noice.nvim",
-    --     event = "VeryLazy",
-    --     opts = {
-    --         -- add any options here
-    --     },
-    --     dependencies = {
-    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    --         "MunifTanjim/nui.nvim",
-    --         -- OPTIONAL:
-    --         --   `nvim-notify` is only needed, if you want to use the notification view.
-    --         --   If not available, we use `mini` as the fallback
-    --         "rcarriga/nvim-notify",
-    --     }
-    -- }
+    {
+        "nvim-tree/nvim-tree.lua",
+        lazy = false,
+        init = function()
+            -- disable netrw at the very start of your init.lua
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+
+            -- set termguicolors to enable highlight groups
+            vim.opt.termguicolors = true
+            require("nvim-tree").setup()
+        end
+    }
+
+
 }
 
 require("lazy").setup(plugins, opts)
