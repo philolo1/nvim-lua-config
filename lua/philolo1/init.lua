@@ -15,5 +15,3 @@ require("philolo1.lsp")
 
 require("philolo1.lsp")
 -- vim.cmd("set clipboard=unnamed")
-vim.o.clipboard = "unnamed"
-vim.cmd("set relativenumber")

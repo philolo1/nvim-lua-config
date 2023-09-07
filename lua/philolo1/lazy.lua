@@ -106,7 +106,11 @@ local plugins = {
             require("nvim-tree").setup()
         end
     },
-    'hrsh7th/cmp-path'
+    'hrsh7th/cmp-path',
+    'neovim/nvim-lspconfig',
+    'simrat39/rust-tools.nvim',
+    'nvim-lua/plenary.nvim',
+    'mfussenegger/nvim-dap'
 
 
 }

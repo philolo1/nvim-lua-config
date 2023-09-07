@@ -5,3 +5,4 @@ function OpenGit()
 end
 
 vim.keymap.set("n", "<leader>g", OpenGit);
+vim.keymap.set("n", "<C-g>", OpenGit);
