@@ -1,0 +1,14 @@
+{
+  "tsserver.enable": true,
+  "diagnostic.enable": true,
+  "tsserver.trace.server": "verbose",
+  "tsserver.log": "verbose",
+  "suggest.noselect": true,
+  "tsserver.disableAutomaticTypeAcquisition": false,
+  "languageserver": {
+    "nim": {
+      "command": "nimlsp",
+      "filetypes": ["nim"]
+    }
+  }
+}

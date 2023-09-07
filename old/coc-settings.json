@@ -1,0 +1,18 @@
+{
+  "tsserver.enable": true,
+  "diagnostic.enable": true,
+  "tsserver.trace.server": "verbose",
+  "tsserver.log": "verbose",
+  "suggest.noselect": true,
+  "tsserver.disableAutomaticTypeAcquisition": false,
+  "sumneko-lua.enableNvimLuaDev": true,
+  "languageserver": {
+    "nim": {
+      "command": "nimlsp",
+      "filetypes": ["nim"]
+    },
+    "lua": {
+      "sumneko-lua.enableNvimLuaDev": true,
+    }
+  }
+}
