@@ -4,4 +4,4 @@ function OpenGit()
     vim.cmd(':exe "wincmd j" | q');
 end
 
-vim.keymap.set("n", "<C-g>", OpenGit);
+vim.keymap.set("n", "<leader>g", OpenGit);

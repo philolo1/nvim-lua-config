@@ -105,7 +105,8 @@ local plugins = {
             vim.opt.termguicolors = true
             require("nvim-tree").setup()
         end
-    }
+    },
+    'hrsh7th/cmp-path'
 
 
 }
