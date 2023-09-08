@@ -106,7 +106,12 @@ vim.opt.wildignore = {
     "*.tmp",
     "*~",
     "*.class",
+    "*.vimrc",
 }
 
 vim.opt.laststatus = 2
 vim.opt.splitright = true
+
+-- spell
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }

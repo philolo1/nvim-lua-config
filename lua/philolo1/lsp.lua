@@ -55,8 +55,16 @@ lsp.setup()
 local cmp = require('cmp')
 local cmp_select_opts = { behavior = cmp.SelectBehavior.Insert }
 
+local select_next_mapping = cmp.mapping(function()
+    if cmp.visible() then
+        cmp.select_next_item(cmp_select_opts)
+    else
+        cmp.complete()
+    end
+end)
 
 cmp.setup({
+    enabled = true,
     preselect = 'none',
     completion = {
         completeopt = 'menu,menuone,noselect',
@@ -69,21 +77,11 @@ cmp.setup({
     },
     mapping = {
         ['<Up>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-,>'] = cmp.mapping.scroll_docs(-4),
         ['<Down>'] = cmp.mapping.scroll_docs(4),
-        ['<C-k>'] = cmp.mapping(function()
-            if cmp.visible() then
-                cmp.select_next_item(cmp_select_opts)
-            else
-                cmp.complete()
-            end
-        end),
-        ['<C-n>'] = cmp.mapping(function()
-            if cmp.visible() then
-                cmp.select_next_item(cmp_select_opts)
-            else
-                cmp.complete()
-            end
-        end),
+        ['<C-.>'] = cmp.mapping.scroll_docs(4),
+        ['<C-k>'] = select_next_mapping,
+        ['<C-n>'] = select_next_mapping,
     },
     snippet = {
         expand = function(args)
@@ -92,7 +90,8 @@ cmp.setup({
     },
     window = {
         documentation = {
-            max_height = 15,
+            scrollbar = true,
+            max_height = 800,
             max_width = 60,
         }
     },

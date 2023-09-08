@@ -40,7 +40,6 @@ local plugins = {
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     'mbbill/undotree',
-    'tpope/vim-fugitive',
     -- lsp
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -110,7 +109,11 @@ local plugins = {
     'neovim/nvim-lspconfig',
     'simrat39/rust-tools.nvim',
     'nvim-lua/plenary.nvim',
-    'mfussenegger/nvim-dap'
+    'mfussenegger/nvim-dap',
+    -- Git basics
+    'tpope/vim-fugitive',
+    -- Git ui
+    'idanarye/vim-merginal',
 }
 
 local opts = {}
