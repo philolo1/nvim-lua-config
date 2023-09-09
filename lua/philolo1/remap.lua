@@ -65,3 +65,7 @@ vim.api.nvim_create_autocmd(
         end
     }
 )
+
+
+-- command line
+vim.keymap.set('c', '<c-a>', '<Home>');

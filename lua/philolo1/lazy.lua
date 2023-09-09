@@ -114,6 +114,15 @@ local plugins = {
     'tpope/vim-fugitive',
     -- Git ui
     'idanarye/vim-merginal',
+    -- terminal
+    {
+        "NvChad/nvterm",
+        init = function()
+            require("nvterm").setup()
+        end
+    },
+
+
 }
 
 local opts = {}

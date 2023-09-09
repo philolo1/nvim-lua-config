@@ -89,9 +89,15 @@ cmp.setup({
         end,
     },
     window = {
+        completion = {
+            scrollbar = true,
+            max_height = 2000,
+            max_width = 60,
+
+        },
         documentation = {
             scrollbar = true,
-            max_height = 800,
+            max_height = 2000,
             max_width = 60,
         }
     },

@@ -5,7 +5,7 @@ require("philolo1.lazy")
 require("philolo1.remap")
 require("philolo1.set")
 
--- lsp 
+-- lsp
 require("philolo1.lsp")
 
 -- plugins
@@ -19,3 +19,4 @@ require("philolo1.undotree")
 require("philolo1.lualine")
 require("philolo1.rust-tools")
 require("philolo1.lsp")
+require("philolo1.nvterm")
