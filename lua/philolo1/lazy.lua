@@ -82,12 +82,7 @@ local plugins = {
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
     'hrsh7th/cmp-nvim-lsp-signature-help',
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts) require 'lsp_signature'.setup(opts) end
-    },
+    "ray-x/lsp_signature.nvim",
 
     "tpope/vim-dadbod",
     "kristijanhusak/vim-dadbod-ui",
@@ -121,10 +116,19 @@ local plugins = {
             require("nvterm").setup()
         end
     },
+    -- emmet completion
+    {
+        'dcampos/cmp-emmet-vim',
+        dependencies = { 'mattn/emmet-vim' }
+    }
+
 
 
 }
 
+
 local opts = {}
+
+
 
 require("lazy").setup(plugins, opts)
