@@ -29,7 +29,10 @@ local plugins = {
     },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'WhoIsSethDaniel/lualine-lsp-progress.nvim'
+        },
     },
     { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -56,6 +59,7 @@ local plugins = {
             { 'L3MON4D3/LuaSnip' },     -- Required
         }
     },
+    { "folke/neodev.nvim", opts = {} },
     {
         'numToStr/Comment.nvim',
         opts = {
@@ -71,9 +75,7 @@ local plugins = {
         -- install jsregexp (optional!).
         build = "make install_jsregexp"
     },
-    { "folke/neodev.nvim", opts = {} },
 
-    'neovim/nvim-lspconfig',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -120,15 +122,20 @@ local plugins = {
     {
         'dcampos/cmp-emmet-vim',
         dependencies = { 'mattn/emmet-vim' }
+    },
+    -- plugin that shows key shortcuts that you defined
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {}
     }
-
-
-
 }
 
 
 local opts = {}
-
-
 
 require("lazy").setup(plugins, opts)

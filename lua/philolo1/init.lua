@@ -21,4 +21,4 @@ require("philolo1.nvterm")
 
 -- lsp
 require("philolo1.lsp")
--- require("philolo1.lsp-signature")
+require("philolo1.lsp-signature")

@@ -1,3 +1,5 @@
+local tmap = require("philolo1.helper").tmap;
+
 require("nvterm").setup({
     terminals = {
         shell = vim.o.shell,
@@ -41,3 +43,5 @@ local opts = { noremap = true, silent = true }
 for _, mapping in ipairs(mappings) do
     vim.keymap.set(mapping[1], mapping[2], mapping[3], opts)
 end
+
+tmap('<ESC>', "<C-\\><C-N>", { noremap = true }, "enter normal mode in terminal");

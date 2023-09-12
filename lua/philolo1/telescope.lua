@@ -1,5 +1,8 @@
 local builtin = require('telescope.builtin')
 
+local nmap = require("philolo1.helper").nmap;
+
+
 require('telescope').setup {
     extensions = {
         fzf = {
@@ -22,13 +25,13 @@ end
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
-vim.keymap.set('n', '<C-k>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>k', builtin.find_files, {})
+nmap('<C-k>', builtin.find_files, {}, "telescope find files")
+nmap('<leader>k', builtin.find_files, {}, "telescope find files")
 
--- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+-- nmap('<C-p>', builtin.git_files, {})
 
-vim.keymap.set('n', '<C-l>', FilterLua, {})
-vim.keymap.set('n', '<leader>l', FilterLua, {})
+nmap('<C-l>', FilterLua, {}, "telescope search lua files")
+nmap('<leader>l', FilterLua, {}, "telescope search lua files")
 
-vim.keymap.set('n', '<C-s>', builtin.live_grep)
-vim.keymap.set('n', '<leader>s', builtin.live_grep)
+nmap('<C-s>', builtin.live_grep, {}, "telescope search content")
+nmap('<leader>s', builtin.live_grep, {}, "telescope search content")

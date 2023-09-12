@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+local nmap = require("philolo1.helper").nmap;
+local vmap = require("philolo1.helper").vmap;
+
+-- expand %% to path in command line
 vim.cmd("cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'")
 
 -- Define the function to open init.lua file
@@ -10,18 +13,19 @@ function OpenInitLazy()
 end
 
 -- Map Ctrl-i to the openInitLua function in normal mode
-vim.keymap.set('n', '<C-i>', OpenInitLazy, { noremap = true, silent = true })
+nmap('<C-i>', OpenInitLazy, { noremap = true, silent = true }, "open lazy.lua")
+nmap('<leader>i', OpenInitLazy, { noremap = true, silent = true }, "open lazy.lua")
 
 -- Map ' to save
-vim.keymap.set('n', "'", ":wa<CR>", { noremap = true })
-vim.keymap.set('n', "<leader>q", ":bd<CR>", { noremap = true })
-vim.keymap.set('n', "<C-q>", ":bd<CR>", { noremap = true })
+nmap("'", ":wa<CR>", { noremap = true }, "Save file")
+nmap("<leader>q", ":bd<CR>", { noremap = true }, "Delete buffer")
+nmap("<C-q>", ":bd<CR>", { noremap = true }, "Delete buffer")
 
+nmap("J", "}", {}, "move down")
+nmap("K", "{", {}, "move up")
 
-vim.keymap.set("n", "J", "}")
-vim.keymap.set("n", "K", "{")
-vim.keymap.set("v", "J", "}")
-vim.keymap.set("v", "K", "{")
+vmap("J", "}", {}, "move paragraph down")
+vmap("K", "{", {}, "move paragraph up")
 
 
 -- My own user commands
@@ -67,5 +71,5 @@ vim.api.nvim_create_autocmd(
 )
 
 
--- command line
-vim.keymap.set('c', '<c-a>', '<Home>');
+nmap('<leader>y', '"ayy', { noremap = true }, "copy line to register a");
+nmap('<leader>p', '"aP', { noremap = true }, "paste line from register a");

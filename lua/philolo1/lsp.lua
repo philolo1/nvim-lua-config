@@ -1,5 +1,9 @@
+-- setup for lua completion
+require("neodev").setup()
+
 local lsp = require('lsp-zero').preset("recommended")
 
+local nmap = require("philolo1.helper").nmap;
 
 lsp.setup_servers({
     'tsserver',
@@ -27,11 +31,11 @@ lsp.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     -- lsp.default_keymaps({ buffer = bufnr })
-    vim.keymap.set("n", "<leader>d", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
+    nmap("<leader>d", function() vim.lsp.buf.definition() end, opts, "go to definition")
+    nmap("<leader>f", function() vim.lsp.buf.hover() end, opts, "display information")
+    nmap("<leader>r", function() vim.lsp.buf.rename() end, opts, "rename")
     -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, opts)
+    nmap("<leader>a", function() vim.lsp.buf.code_action() end, opts, "do code action")
 end)
 
 -- -- (Optional) Configure lua language server for neovim
@@ -128,6 +132,7 @@ cmp.setup({
         end,
     },
 })
+
 local ls = require("luasnip");
 vim.keymap.set({ "i" }, "<Tab>", function() ls.expand() end, { silent = true, remap = true })
 vim.keymap.set({ "i", "s" }, "<C-j>", function()

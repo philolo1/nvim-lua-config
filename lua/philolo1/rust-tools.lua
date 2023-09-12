@@ -1,12 +1,13 @@
 local rt = require("rust-tools")
 
+local nmap = require("philolo1.helper").nmap;
 rt.setup({
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            nmap("<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr }, "lsp hover action")
             -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+            nmap("<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr }, "lsp code action")
         end,
     },
 })
