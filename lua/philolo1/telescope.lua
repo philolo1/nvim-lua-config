@@ -1,10 +1,16 @@
 local builtin = require('telescope.builtin')
 
+
 local nmap = require("philolo1.helper").nmap;
+
 
 
 require('telescope').setup {
     extensions = {
+        workspaces = {
+            -- keep insert mode after selection in the picker, default is false
+            keep_insert = true,
+        },
         fzf = {
             fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -24,6 +30,7 @@ end
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('workspaces')
 
 nmap('<C-k>', builtin.find_files, {}, "telescope find files")
 nmap('<leader>k', builtin.find_files, {}, "telescope find files")
@@ -35,3 +42,5 @@ nmap('<leader>l', FilterLua, {}, "telescope search lua files")
 
 nmap('<C-s>', builtin.live_grep, {}, "telescope search content")
 nmap('<leader>s', builtin.live_grep, {}, "telescope search content")
+
+nmap('<leader>w', ":Telescope workspaces<CR>", {}, "telescope workspace search")

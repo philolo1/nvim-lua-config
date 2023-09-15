@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 local nmap = require("philolo1.helper").nmap;
 local vmap = require("philolo1.helper").vmap;
+local imap = require("philolo1.helper").imap;
 
 -- expand %% to path in command line
 vim.cmd("cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'")
@@ -17,7 +18,7 @@ nmap('<C-i>', OpenInitLazy, { noremap = true, silent = true }, "open lazy.lua")
 nmap('<leader>i', OpenInitLazy, { noremap = true, silent = true }, "open lazy.lua")
 
 -- Map ' to save
-nmap("'", ":wa<CR>", { noremap = true }, "Save file")
+nmap("'", ":w<CR>", { noremap = true }, "Save file")
 nmap("<leader>q", ":bd<CR>", { noremap = true }, "Delete buffer")
 nmap("<C-q>", ":bd<CR>", { noremap = true }, "Delete buffer")
 
@@ -33,6 +34,9 @@ vim.api.nvim_create_user_command("V", ":e /Users/philolo1/.config/nvim/lua/philo
 vim.api.nvim_create_user_command("S", ":source", {});
 
 vim.api.nvim_create_user_command("H", ":echo 'hi'", {});
+
+
+vim.cmd(":command! -bar -nargs=0 RunDBUISaveQuery call feedkeys(\"<Plug>(DBUI_SaveQuery)\", 'n')");
 
 
 function OpenDiagnostics()
@@ -73,3 +77,27 @@ vim.api.nvim_create_autocmd(
 
 nmap('<leader>y', '"ayy', { noremap = true }, "copy line to register a");
 nmap('<leader>p', '"aP', { noremap = true }, "paste line from register a");
+
+nmap('Y', 'yyp', { noremap = true }, "copy current line and paste it below");
+
+nmap('<leader>z', 'za', { noremap = true }, "trigger fold");
+nmap('<leader>o', '<c-o>', { noremap = true }, "go back one file");
+imap('<c-l>', function()
+    vim.cmd(":normal!i<leader>");
+    vim.cmd(":startinsert!");
+end, { noremap = true }, "insert leader character");
+
+nmap('<leader>v', function()
+    if (#vim.api.nvim_tabpage_list_wins(0) > 2) then
+        vim.cmd("wincmd w");
+    else
+        vim.cmd("vsplit");
+    end
+end, {}, "split visual mode or move around");
+
+
+nmap('<leader>q', function()
+    vim.cmd('source');
+    local filepath = vim.fn.expand('%:p') -- Get the full path of the current file
+    print("Sourced lua file: " .. filepath);
+end, { noremap = true }, "reload file");

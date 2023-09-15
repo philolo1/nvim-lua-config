@@ -30,6 +30,18 @@ H.nmap = function(lhs, rhs, opts, desc)
     map('n', lhs, rhs, opts, desc);
 end
 
+--- Adds a new insert mode mapping
+--- Examples:
+---@param lhs string           Left-hand side |{lhs}| of the mapping.
+---@param rhs string|function  Right-hand side |{rhs}| of the mapping, can be a Lua function.
+---@param opts table|nil Table of |:map-arguments|.
+---                      - Same as |vim.keymap.set| {opts}, except:
+---                        - "desc" is a seperate parameter
+---@param desc string|function Description of the mapping
+H.imap = function(lhs, rhs, opts, desc)
+    map('i', lhs, rhs, opts, desc);
+end
+
 --- Adds a new visual mode mapping
 --- Examples:
 ---@param lhs string           Left-hand side |{lhs}| of the mapping.

@@ -42,7 +42,6 @@ vim.g.solarized_visibility = "high"
 vim.g.solarized_contrast = "high"
 
 
-vim.opt.background = "dark"
 -- not sure what this does
 vim.opt.syntax = "enable"
 
@@ -116,3 +115,9 @@ vim.opt.splitright = true
 -- spell
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
+
+-- local treesitter = require("treesitter");
+-- fold
+vim.opt.foldlevel = 20
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

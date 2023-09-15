@@ -4,6 +4,7 @@ require("philolo1.lazy")
 
 -- general settings
 require("philolo1.remap")
+require("philolo1.command")
 require("philolo1.set")
 
 
@@ -22,3 +23,4 @@ require("philolo1.nvterm")
 -- lsp
 require("philolo1.lsp")
 require("philolo1.lsp-signature")
+require("philolo1.hop")

@@ -11,13 +11,15 @@ lsp.setup_servers({
     'lua_ls',
     'rust_analyzer',
     'gopls',
+    'astro',
+    --    'sqlls',
 })
+
 
 
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
-
 
 
     require "lsp_signature".on_attach({
@@ -49,13 +51,20 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
+        ['astro'] = { 'astro' },
         -- if you have a working setup with null-ls
         -- you can specify filetypes it can format.
         -- ['null-ls'] = {'javascript', 'typescript'},
     }
 })
 
+-- setup loa
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+require('lspconfig').tsserver.setup {}
+-- setup sql
+-- require 'lspconfig'.sqlls.setup {}
+
 lsp.setup()
 
 local has_words_before = function()
@@ -64,7 +73,7 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local luasnip = require("luasnip")
+local luasnip = require("luasnip");
 
 local cmp = require('cmp')
 local cmp_select_opts = { behavior = cmp.SelectBehavior.Insert }
@@ -84,11 +93,21 @@ cmp.setup({
         completeopt = 'menu,menuone,noselect',
     },
     sources = {
-        { name = 'emmet_vim' },
+        {
+            name = 'emmet_vim',
+            option = {
+                filetypes = {
+                    'html', 'xml', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'heex',
+                    'tsx', 'jsx', 'astro'
+                },
+            }
+        },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         -- { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
+        -- sql
+        { name = 'vim-dadbod-completion' }
     },
     mapping = {
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),

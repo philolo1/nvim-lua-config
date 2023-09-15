@@ -25,6 +25,7 @@ local plugins = {
         name = 'rose-pine',
         init = function()
             vim.cmd('colorscheme rose-pine')
+            vim.opt.background = "dark";
         end
     },
     {
@@ -35,7 +36,6 @@ local plugins = {
         },
     },
     { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     { 'nvim-lua/plenary.nvim' },
     {
@@ -132,10 +132,51 @@ local plugins = {
             vim.o.timeoutlen = 300
         end,
         opts = {}
+    },
+    {
+        "natecraddock/workspaces.nvim",
+        init = function()
+            require("workspaces").setup()
+        end
+    },
+    {
+        "natecraddock/sessions.nvim",
+        init = function()
+            require("sessions").setup()
+        end
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        dev = true,
+        init = function()
+            require('gitsigns').setup()
+        end
+    },
+    "tpope/vim-surround",
+    -- {
+    --     'shaunsingh/solarized.nvim',
+    --     init = function()
+    --         require('solarized').set()
+    --         vim.cmd("colorscheme solarized");
+    --         vim.opt.background = "light";
+    --     end
+    -- },
+    {
+        'smoka7/hop.nvim',
+        version = "*",
+        opts = {},
     }
 }
 
 
-local opts = {}
+local opts = {
+    dev = {
+        -- directory where you store your local plugin projects
+        path = "~/code",
+        ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
+        patterns = {},    -- For example {"folke"}
+        fallback = false, -- Fallback to git when local plugin doesn't exist
+    },
+}
 
 require("lazy").setup(plugins, opts)
