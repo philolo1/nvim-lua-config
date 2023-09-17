@@ -147,7 +147,7 @@ local plugins = {
     },
     {
         "lewis6991/gitsigns.nvim",
-        dev = true,
+        -- dev = true,
         init = function()
             require('gitsigns').setup()
         end
