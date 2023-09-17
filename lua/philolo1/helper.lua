@@ -66,5 +66,17 @@ H.tmap = function(lhs, rhs, opts, desc)
     map('t', lhs, rhs, opts, desc);
 end
 
+--- Adds a new command mode mapping
+--- Examples:
+---@param lhs string           Left-hand side |{lhs}| of the mapping.
+---@param rhs string|function  Right-hand side |{rhs}| of the mapping, can be a Lua function.
+---@param opts table|nil Table of |:map-arguments|.
+---                      - Same as |vim.keymap.set| {opts}, except:
+---                        - "desc" is a seperate parameter
+---@param desc string|function Description of the mapping
+H.cmap = function(lhs, rhs, opts, desc)
+    map('c', lhs, rhs, opts, desc);
+end
+
 
 return H;

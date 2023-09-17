@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 local nmap = require("philolo1.helper").nmap;
 local vmap = require("philolo1.helper").vmap;
 local imap = require("philolo1.helper").imap;
+local cmap = require("philolo1.helper").cmap;
 
 -- expand %% to path in command line
 vim.cmd("cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'")
@@ -88,7 +89,7 @@ imap('<c-l>', function()
 end, { noremap = true }, "insert leader character");
 
 nmap('<leader>v', function()
-    if (#vim.api.nvim_tabpage_list_wins(0) > 2) then
+    if (#vim.api.nvim_tabpage_list_wins(0) >= 2) then
         vim.cmd("wincmd w");
     else
         vim.cmd("vsplit");
@@ -101,3 +102,6 @@ nmap('<leader>q', function()
     local filepath = vim.fn.expand('%:p') -- Get the full path of the current file
     print("Sourced lua file: " .. filepath);
 end, { noremap = true }, "reload file");
+
+
+cmap('<c-a>', '<Home>', { noremap = true }, "go to beginning of the line");

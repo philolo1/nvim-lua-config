@@ -9,3 +9,4 @@ local imap = require("philolo1.helper").imap;
 vim.api.nvim_create_user_command("V", ":e /Users/philolo1/.config/nvim/lua/philolo1/init.lua", {});
 vim.api.nvim_create_user_command("S", ":source", {});
 vim.api.nvim_create_user_command("H", ":echo 'hi'", {});
+vim.api.nvim_create_user_command("F", ":e ~/.config/fish/config.fish", {});
