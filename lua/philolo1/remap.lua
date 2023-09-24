@@ -105,3 +105,11 @@ end, { noremap = true }, "reload file");
 
 
 cmap('<c-a>', '<Home>', { noremap = true }, "go to beginning of the line");
+
+-- remap for magic search
+-- nmap('/', '/\v', { noremap = true }, "remap search to magicsearch");
+-- vmap('/', '/\v', { noremap = true }, "remap search to magicsearch");
+-- cmap('%s/', '%smagic/', { noremap = true }, "remap search to magicsearch");
+-- cmap('\\>s/', '%smagic/', { noremap = true }, "remap search to magicsearch");
+-- nmap(':g//', ':g//', { noremap = true }, "remap search to magicsearch");
+-- nmap(':g/', ':g/\v', { noremap = true }, "remap search to magicsearch");
