@@ -55,7 +55,6 @@ local plugins = {
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
         }
     },
     { "folke/neodev.nvim", opts = {} },
@@ -66,20 +65,19 @@ local plugins = {
         },
         lazy = false,
     },
-    {
-        lazy = false,
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp"
-    },
 
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/nvim-cmp',
+    {
+        lazy = false,
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            "onsails/lspkind-nvim",
+            "saadparwaiz1/cmp_luasnip",
+        }
+    },
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
     'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -166,7 +164,23 @@ local plugins = {
         opts = {},
     },
     -- GO
-    "fatih/vim-go"
+    "fatih/vim-go",
+    -- snippet
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            "hrsh7th/nvim-cmp"
+        },
+    },
+
+    -- LUA STYLING
+    {
+        "wesleimp/stylua.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
+    }
 }
 
 

@@ -2,6 +2,7 @@
 require("neodev").setup()
 
 local lsp = require('lsp-zero').preset("recommended")
+local ls = require("luasnip")
 
 local nmap = require("philolo1.helper").nmap;
 
@@ -15,10 +16,7 @@ lsp.setup_servers({
     --    'sqlls',
 })
 
-
-
-
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
 
@@ -62,18 +60,8 @@ lsp.format_on_save({
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 require('lspconfig').tsserver.setup {}
--- setup sql
--- require 'lspconfig'.sqlls.setup {}
 
 lsp.setup()
-
-local has_words_before = function()
-    unpack = unpack or table.unpack
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local luasnip = require("luasnip");
 
 local cmp = require('cmp')
 local cmp_select_opts = { behavior = cmp.SelectBehavior.Insert }
@@ -86,6 +74,13 @@ local select_next_mapping = cmp.mapping(function()
     end
 end)
 
+
+local lspkind = require("lspkind")
+
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+
 cmp.setup({
     enabled = true,
     preselect = 'none',
@@ -93,6 +88,8 @@ cmp.setup({
         completeopt = 'menu,menuone,noselect',
     },
     sources = {
+        { name = "luasnip" },
+        { name = 'nvim_lsp' },
         {
             name = 'emmet_vim',
             option = {
@@ -102,12 +99,28 @@ cmp.setup({
                 },
             }
         },
-        { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         -- { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
         -- sql
         { name = 'vim-dadbod-completion' }
+    },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol_text",
+            preset = "codicons",
+            maxwidth = 50,
+            menu = {
+                buffer = "[BUF]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[SNIP]",
+                emmet_vim = "[EMMET]",
+                nvim_lua = "[LUA]",
+                path = "[PATH]",
+                vim_dadbod_completion = "[DADBOD]",
+
+            },
+        }),
     },
     mapping = {
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
@@ -120,7 +133,7 @@ cmp.setup({
     },
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            ls.lsp_expand(args.body)
         end,
     },
     window = {
@@ -136,23 +149,10 @@ cmp.setup({
             max_width = 60,
         }
     },
-    formatting = {
-        fields = { 'abbr', 'menu', 'kind' },
-        format = function(entry, item)
-            local short_name = {
-                nvim_lsp = 'LSP',
-                nvim_lua = 'nvim'
-            }
 
-            local menu_name = short_name[entry.source.name] or entry.source.name
-
-            item.menu = string.format('[%s]', menu_name)
-            return item
-        end,
-    },
 })
 
-local ls = require("luasnip");
+
 vim.keymap.set({ "i" }, "<Tab>", function() ls.expand() end, { silent = true, remap = true })
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
     print("hi 2");
