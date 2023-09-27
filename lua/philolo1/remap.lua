@@ -11,7 +11,7 @@ vim.cmd("cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'")
 -- Define the function to open init.lua file
 function OpenInitLazy()
     vim.cmd("e ~/.config/nvim/lua/philolo1/lazy.lua")
-    vim.cmd("cd ~/.config/nvim/lua/")
+    vim.cmd("cd ~/.config/nvim/")
 end
 
 -- Map Ctrl-i to the openInitLua function in normal mode
