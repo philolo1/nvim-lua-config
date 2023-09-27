@@ -43,4 +43,8 @@ nmap('<leader>l', FilterLua, {}, "telescope search lua files")
 nmap('<C-s>', builtin.live_grep, {}, "telescope search content")
 nmap('<leader>s', builtin.live_grep, {}, "telescope search content")
 
+
+nmap('<C-b>', builtin.buffers, {}, "telescope buffer search")
+nmap('<leader>b', builtin.buffers, {}, "telescope buffer search")
+
 nmap('<leader>w', ":Telescope workspaces<CR>", {}, "telescope workspace search")

@@ -106,10 +106,13 @@ end, { noremap = true }, "reload file");
 
 cmap('<c-a>', '<Home>', { noremap = true }, "go to beginning of the line");
 
--- remap for magic search
--- nmap('/', '/\v', { noremap = true }, "remap search to magicsearch");
--- vmap('/', '/\v', { noremap = true }, "remap search to magicsearch");
--- cmap('%s/', '%smagic/', { noremap = true }, "remap search to magicsearch");
--- cmap('\\>s/', '%smagic/', { noremap = true }, "remap search to magicsearch");
--- nmap(':g//', ':g//', { noremap = true }, "remap search to magicsearch");
--- nmap(':g/', ':g/\v', { noremap = true }, "remap search to magicsearch");
+nmap('<leader>m', 'ma', { noremap = true }, "mark something");
+nmap('<leader>n', "'a", { noremap = true }, "go to mark");
+
+
+nmap('<leader>cd', function()
+    local folder = vim.fn.expand('%:h') .. '/'
+    local command = string.format(":cd %s", folder);
+    -- print(vim.inspect(command))
+    vim.cmd(command);
+end, { noremap = true }, "set current folder as directory")

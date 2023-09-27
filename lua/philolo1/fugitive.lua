@@ -4,9 +4,9 @@ function OpenGit()
     vim.cmd(':exe "wincmd j" | q');
 end
 
-vim.keymap.set("n", "<leader>g", OpenGit);
+vim.keymap.set("n", "<leader>gg", OpenGit);
 vim.keymap.set("n", "<C-g>", OpenGit);
-vim.keymap.set("n", "<leader>b", ":Git branch<CR>");
+vim.keymap.set("n", "<leader>gb", ":Git branch<CR>");
 
 -- change branch easily
 vim.api.nvim_create_autocmd(

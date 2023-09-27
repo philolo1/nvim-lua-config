@@ -17,6 +17,7 @@ local s = ls.s;
 
 --
 local fmt = require("luasnip.extras.fmt").fmt;
+local fmta = require("luasnip.extras.fmt").fmta;
 
 local i = ls.insert_node;
 
@@ -31,6 +32,18 @@ ls.config.set_config {
     enable_autosnippets = true,
 }
 
+
+
+imap("<C-l>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, {}, "change choice in snippets")
+
+ls.cleanup();
+
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 ls.add_snippets(nil, {
     all = {
@@ -48,13 +61,39 @@ ls.add_snippets(nil, {
         s("req", fmt("local {} = require('{}')", {
             i(1, "default"),
             rep(1)
-        })
-        ),
+        })),
+        s("leader", fmt("<leader>", {})),
+        s("l", fmt("local {} = {}", { i(1), i(2) })),
+    },
+    go = {
+        s("f", fmta("func <>(<>) <> {\n    <>\n}", {
+            i(1, "name"),
+            i(2, ""),
+            i(3, ""),
+            i(4, "where"),
+        })),
+
+        s("if", fmta("if <> {\n    <>\n}", {
+            i(1, "true"),
+            i(2, ""),
+        })),
+
+        s("else", fmta("else {\n    <>\n}", {
+            i(1, ""),
+        })),
+        s("struct", fmta("type <> struct {\n    <>\n}", {
+            i(1, ""),
+            i(2),
+        })),
+        -- struct function
+        s({ trig = "sf", desc = "struct function definition" },
+            fmta("func (<> *<>) <>(<>) <>{\n    <>\n}", {
+                i(1, ""),
+                i(2, ""),
+                i(3, ""),
+                i(4, ""),
+                i(5, ""),
+                i(6, ""),
+            })),
     }
 })
-
-imap("<C-l>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
-end, {}, "change choice in snippets")

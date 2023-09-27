@@ -169,7 +169,7 @@ local plugins = {
     {
         "L3MON4D3/LuaSnip",
         dependencies = {
-            "rafamadriz/friendly-snippets",
+            -- "rafamadriz/friendly-snippets",
             "hrsh7th/nvim-cmp"
         },
     },
@@ -180,6 +180,14 @@ local plugins = {
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
+    },
+
+    -- Rest api client
+    {
+        'rest-nvim/rest.nvim',
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        }
     }
 }
 
