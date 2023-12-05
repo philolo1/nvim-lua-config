@@ -24,6 +24,10 @@ function ChangeBranch()
     vim.cmd(":bdelete " .. current_buf);
 end
 
+function DeleteBranch()
+    vim.cmd("execute \":Git branch -d \" . expand('<cWORD>')");
+end
+
 function Split(str, delimiter)
     local result = {}
     for match in (str .. delimiter):gmatch("(.-)" .. delimiter) do
@@ -50,6 +54,7 @@ vim.api.nvim_create_autocmd(
         callback = function()
             print("buffer read git")
             nmap("<leader>c", ChangeBranch, { buffer = true }, "change branch");
+            nmap("<leader>d", DeleteBranch, { buffer = true }, "delete branch");
         end,
     }
 );

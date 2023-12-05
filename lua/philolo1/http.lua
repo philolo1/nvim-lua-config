@@ -20,7 +20,7 @@ require("rest-nvim").setup({
         show_curl_command = false,
         show_http_info = true,
         -- show_headers = true
-        show_headers = false,
+        show_headers = true,
         -- executables or functions for formatting response body [optional]
         -- set them to false if you want to disable them
         formatters = {

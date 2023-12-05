@@ -37,8 +37,8 @@ nmap('<leader>k', builtin.find_files, {}, "telescope find files")
 
 -- nmap('<C-p>', builtin.git_files, {})
 
-nmap('<C-l>', FilterLua, {}, "telescope search lua files")
-nmap('<leader>l', FilterLua, {}, "telescope search lua files")
+-- nmap('<C-l>', FilterLua, {}, "telescope search lua files")
+-- nmap('<leader>l', FilterLua, {}, "telescope search lua files")
 
 nmap('<C-s>', builtin.live_grep, {}, "telescope search content")
 nmap('<leader>s', builtin.live_grep, {}, "telescope search content")

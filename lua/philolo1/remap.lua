@@ -52,6 +52,15 @@ vim.api.nvim_create_autocmd(
     }
 );
 
+vim.cmd("autocmd! bufwritepost *.js silent !prettier  % --write");
+vim.cmd("autocmd! bufwritepost *.ts silent !prettier  % --write");
+vim.cmd("autocmd! bufwritepost *.tsx silent !prettier  % --write");
+
+
+
+
+
+
 
 function MkNonExDir(file, buf)
     if vim.fn.getbufvar(buf, 'buftype') == "" and not string.match(file, "^%w+:/") then
@@ -111,8 +120,19 @@ nmap('<leader>n', "'a", { noremap = true }, "go to mark");
 
 
 nmap('<leader>cd', function()
-    local folder = vim.fn.expand('%:h') .. '/'
-    local command = string.format(":cd %s", folder);
-    -- print(vim.inspect(command))
+    local currentFolder = vim.fn.expand('%:h')
+    local command = string.format(":cd %s", currentFolder);
+    vim.cmd(command);
+
+    local gitBaseFolder = vim.fn.split(vim.fn.system("git rev-parse --show-toplevel"), "\n", 1)[1]
+    command = string.format(":cd %s", gitBaseFolder);
     vim.cmd(command);
 end, { noremap = true }, "set current folder as directory")
+
+
+nmap('<leader>w', ":Telescope workspaces<CR>", {}, "telescope workspace search")
+nmap('<leader>ls', ":e ~/.config/nvim/lua/philolo1/snippet.lua<CR>", {}, "open lua snippets")
+
+
+vim.keymap.set('v', '<leader>]', ':Gen<CR>')
+vim.keymap.set('n', '<leader>]', ':Gen<CR>')

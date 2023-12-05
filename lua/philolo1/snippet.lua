@@ -56,6 +56,11 @@ ls.add_snippets(nil, {
         }),
         parser.parse_snippet("expand", "--- this is what was expanded")
     },
+    javascript = {
+        s("log", fmta('console.log("<>")', {
+            i(1, ""),
+        })),
+    },
     lua = {
         parser.parse_snippet("lf", "local $1 = function($2)\n $0 \nend"),
         s("req", fmt("local {} = require('{}')", {
@@ -94,6 +99,14 @@ ls.add_snippets(nil, {
                 i(4, ""),
                 i(5, ""),
                 i(6, ""),
-            })),
+            })
+        ),
+        s("err", fmta('errors.New("<>")', {
+            i(1, "Some Error"),
+        })),
+        s("p", fmta('fmt.Printf("<>",<>)', {
+            i(1, "%v\\n"),
+            i(2, ""),
+        })),
     }
 })
